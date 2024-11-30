@@ -1,0 +1,68 @@
+﻿@model aplicacaoFinal.Models.Posto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Cadastrar Posto</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomePosto" class="control-label"></label>
+                <input asp-for="NomePosto" class="form-control" />
+                <span asp-validation-for="NomePosto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoPino" class="control-label"></label>
+                <select id="tipoPino" name="tipoPino">
+                    <option value="PinoEncaixeRapido">Pino de Encaixe Rápido</option>
+                    <option value="PinoRoscado">Pino Roscado</option>
+                    <option value="PinoPressao">Pino de Pressão</option>
+                    <option value="PinoChaveta">Pino de Chaveta</option>
+                    <option value="PinoRetencao">Pino de Retenção</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="PotenciaPosto" class="control-label"></label>
+                <input asp-for="PotenciaPosto" class="form-control" />
+                <span asp-validation-for="PotenciaPosto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecoPorKwh" class="control-label"></label>
+                <input asp-for="PrecoPorKwh" class="form-control" />
+                <span asp-validation-for="PrecoPorKwh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rua" class="control-label"></label>
+                <input asp-for="Rua" class="form-control" />
+                <span asp-validation-for="Rua" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bairro" class="control-label"></label>
+                <input asp-for="Bairro" class="form-control" />
+                <span asp-validation-for="Bairro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <input asp-for="IdUsuario" class="form-control" />
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
