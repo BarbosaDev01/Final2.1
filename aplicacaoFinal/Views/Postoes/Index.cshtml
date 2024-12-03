@@ -4,97 +4,68 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Encontrar Localização</h1>
+<h1>Locais</h1>
 
-<!-- Mapa do Google -->
-<div id="map" style="height: 500px; width: 100%;"></div>
-
-<!-- Tabela de postos -->
+<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.NomePosto)</th>
-            <th>@Html.DisplayNameFor(model => model.TipoPino)</th>
-            <th>@Html.DisplayNameFor(model => model.PotenciaPosto)</th>
-            <th>@Html.DisplayNameFor(model => model.PrecoPorKwh)</th>
-            <th>@Html.DisplayNameFor(model => model.Rua)</th>
-            <th>@Html.DisplayNameFor(model => model.Bairro)</th>
-            <th>@Html.DisplayNameFor(model => model.IdUsuario)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomePosto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotenciaPosto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrecoPorKwh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rua)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.NomePosto)</td>
-                <td>@Html.DisplayFor(modelItem => item.TipoPino)</td>
-                <td>@Html.DisplayFor(modelItem => item.PotenciaPosto)</td>
-                <td>@Html.DisplayFor(modelItem => item.PrecoPorKwh)</td>
-                <td>@Html.DisplayFor(modelItem => item.Rua)</td>
-                <td>@Html.DisplayFor(modelItem => item.Bairro)</td>
-                <td>@Html.DisplayFor(modelItem => item.IdUsuario)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdPosto">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdPosto">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdPosto">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomePosto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotenciaPosto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecoPorKwh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rua)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdUsuario)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPosto">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPosto">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPosto">Deletar</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCnhd-yDw4Cp-azwNQQDWT-K-WzaqGtq0&callback=initMap" async defer></script>
-<script type="text/javascript">
-    window.initMap = function () {
-        var map;
-        var userAddress = '@ViewBag.UserRua, @ViewBag.UserBairro'; // Endereço do usuário
-
-        // Função para inicializar o mapa
-        function initializeMap(center) {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: center
-            });
-
-            // Adicionar marcador para o usuário
-            new google.maps.Marker({
-                position: center,
-                map: map,
-                title: 'Você está aqui'
-            });
-        }
-
-        // Função para geocodificar um endereço
-        function geocodeAddress(address, callback) {
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'address': address }, function (results, status) {
-                if (status === 'OK') {
-                    var location = results[0].geometry.location;
-                    callback(location.lat(), location.lng());
-                } else {
-                    console.error('Geocodificação falhou para o endereço: ' + address + '. Status: ' + status);
-                }
-            });
-        }
-
-        // Inicializar o mapa com base no endereço do usuário
-        geocodeAddress(userAddress, function (userLat, userLng) {
-            var userLocation = { lat: userLat, lng: userLng };
-            initializeMap(userLocation);
-
-            // Adicionar marcadores para os postos
-            postos.forEach(function (posto) {
-                var postoAddress = posto.Rua + ', ' + posto.Bairro;
-                geocodeAddress(postoAddress, function (postoLat, postoLng) {
-                    var postoLocation = { lat: postoLat, lng: postoLng };
-                    new google.maps.Marker({
-                        position: postoLocation,
-                        map: map,
-                        title: posto.NomePosto
-                    });
-                });
-            });
-        });
-    };
-</script>

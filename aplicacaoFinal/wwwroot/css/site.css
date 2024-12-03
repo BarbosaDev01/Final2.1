@@ -62,19 +62,30 @@ main {
 }
 
 /* Botões */
-button {
+.btn.btn-primary {
     background-color: #52b788; /* Verde médio */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    border-color: #40916c; /* Verde mais escuro */
+    color: #ffffff; /* Texto branco */
+    font-size: 1.2rem; /* Aumenta o tamanho da fonte */
+    padding: 5px 10px; /* Ajusta o espaçamento interno */
+    border-radius: 8px; /* Deixa os cantos mais arredondados */
+    transition: background-color 0.3s ease; /* Adiciona transição suave */
+    margin-top: 3px;
 }
 
-    button:hover {
+    /* Efeito hover */
+    .btn.btn-primary:hover {
         background-color: #40916c; /* Verde mais escuro */
-        transform: scale(1.05);
+        border-color: #1b4332; /* Verde ainda mais escuro */
+        color: #f1f1f1; /* Texto levemente mais claro */
     }
 
+
+
+select {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+}
 

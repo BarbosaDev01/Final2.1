@@ -1,7 +1,7 @@
 ﻿@model aplicacaoFinal.Models.Usuario
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastrar Usuário";
 }
 
 <h1>Cadastrar Usuário </h1>
@@ -28,16 +28,17 @@
                     <option value="PinoPressao">Pino de Pressão</option>
                     <option value="PinoChaveta">Pino de Chaveta</option>
                     <option value="PinoRetencao">Pino de Retenção</option>
+                </select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {

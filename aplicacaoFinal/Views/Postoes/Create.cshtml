@@ -1,7 +1,7 @@
 ﻿@model aplicacaoFinal.Models.Posto
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastrar Posto";
 }
 
 <h1>Cadastrar Posto</h1>
@@ -18,14 +18,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoPino" class="control-label"></label>
-                <select id="tipoPino" name="tipoPino">
+                <select id="TipoPino" name="TipoPino">
                     <option value="PinoEncaixeRapido">Pino de Encaixe Rápido</option>
                     <option value="PinoRoscado">Pino Roscado</option>
                     <option value="PinoPressao">Pino de Pressão</option>
                     <option value="PinoChaveta">Pino de Chaveta</option>
                     <option value="PinoRetencao">Pino de Retenção</option>
                 </select>
-
             </div>
             <div class="form-group">
                 <label asp-for="PotenciaPosto" class="control-label"></label>
@@ -53,14 +52,14 @@
                 <span asp-validation-for="IdUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
